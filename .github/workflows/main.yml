@@ -2,10 +2,27 @@ name: Build Kernel
 on:
   workflow_dispatch:
     inputs:
-      name:
-        description: "名称"
+      logLevel:
+        description: 'Log level'
         required: true
-        default: ""
+        default: 'warning'
+        type: choice
+        options:
+          - info
+          - warning
+          - debug
+      print_tags:
+        description: 'True to print to STDOUT'
+        required: true
+        type: boolean
+      tags:
+        description: 'Test scenario tags'
+        required: true
+        type: string
+      environment:
+        description: 'Environment to run tests against'
+        type: environment
+        required: true
 
 jobs:
   test:
@@ -14,4 +31,4 @@ jobs:
     steps:
     - name: run test
       run: |
-        echo "Rum params ${{ github.event.inputs.name }}"
+        echo "Run params ${{ inputs.logLevel }}  ${{ inputs.enviroment }}"
