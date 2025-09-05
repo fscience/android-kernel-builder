@@ -1,0 +1,17 @@
+name: Build Kernel
+on:
+  workflow_dispatch:
+    inputs:
+      name:
+        description: "名称"
+        required: true
+        default: ""
+
+jobs:
+  test:
+    name: "Test"
+    runs-on: ubuntu-latest
+    steps:
+    - name: run test
+      run: |
+        echo "Rum params ${{ github.event.inputs.name }}"
